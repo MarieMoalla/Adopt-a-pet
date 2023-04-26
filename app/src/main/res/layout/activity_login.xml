@@ -86,6 +86,7 @@
             android:textColor="@color/white"
             android:textSize="14sp" />
 
+
         <TextView
             android:id="@+id/login_tv_register"
             android:layout_width="wrap_content"
@@ -96,6 +97,33 @@
             android:textStyle="bold"
             android:textSize="14sp"/>
 
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="Did you forget your password ?"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/reset_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Reset Password"
+            android:textColor="@color/button_color"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

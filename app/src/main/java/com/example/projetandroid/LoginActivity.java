@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 import service.DatabaseHelper;
 public class LoginActivity extends AppCompatActivity{
 
@@ -18,6 +20,7 @@ public class LoginActivity extends AppCompatActivity{
     EditText mPassword;
     Button mLogin_btn;
     TextView mRegister;
+    TextView mResetPws;
     DatabaseHelper databasHelper;
     //endregion
 
@@ -31,6 +34,7 @@ public class LoginActivity extends AppCompatActivity{
         mPassword = (EditText) findViewById(R.id.login_et_password);
         mLogin_btn = (Button) findViewById(R.id.login_et_btn);
         mRegister = (TextView) findViewById(R.id.login_tv_register);
+        mResetPws = (TextView) findViewById(R.id.reset_pwd);
 
         //database instanciation
         databasHelper = new DatabaseHelper(this);
@@ -72,5 +76,77 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
         //endregion
+
+        //region reset pwd button action
+        mResetPws.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginActivity.this, mLogin.getText().toString() , Toast.LENGTH_SHORT).show();
+                Boolean var = databasHelper.checkUserEmail(mLogin.getText().toString());
+                if(var != true){
+                    Toast.makeText(LoginActivity.this, "Write email first" , Toast.LENGTH_SHORT).show();
+                } else {
+                        String subject="",content="",to_email="",token="";
+                        token = randomString();
+                        subject = "Reset Password";
+                        content ="Your Token is: "+token;
+                    Toast.makeText(LoginActivity.this, token , Toast.LENGTH_SHORT).show();
+
+                    to_email = mLogin.getText().toString();
+                        sendEmail(subject,content,to_email);
+
+
+                //Intent intent = new Intent(LoginActivity.this , ForgetPwd.class);
+                //startActivity(intent);
+            }
+        }});
+
+        //endregion
     }
+    public void sendEmail(String subject, String content, String to_email)
+    {
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to_email});
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, content);
+
+        //need this to prompts email client only
+        email.setType("message/rfc822");
+
+        email.putExtra(Intent.EXTRA_CC,  "meriam.moalla1@gmail.com" ); // add sender email address
+        email.setPackage("com.google.android.gm"); // set Gmail as email provider
+
+        startActivity(Intent.createChooser(email, "Choose an Email client:"));
+    }
+    //region Generate random token
+    public String randomString() {
+        // create a string of all characters
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        // create random string builder
+        StringBuilder sb = new StringBuilder();
+
+        // create an object of Random class
+        Random random = new Random();
+
+        // specify length of random string
+        int length = 7;
+
+        for(int i = 0; i < length; i++) {
+
+            // generate random index number
+            int index = random.nextInt(alphabet.length());
+
+            // get character specified by index
+            // from the string
+            char randomChar = alphabet.charAt(index);
+
+            // append the character to string builder
+            sb.append(randomChar);
+        }
+
+        String randomString = sb.toString();
+        return randomString;
+    }
+    //endregionra
 }

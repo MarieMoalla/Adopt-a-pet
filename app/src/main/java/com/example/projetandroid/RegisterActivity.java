@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity{
                     //Log.i("Name",name);
                     Toast.makeText(RegisterActivity.this, "Test" , Toast.LENGTH_SHORT).show();
                 } else {
-                    User user = new User(0,mName.getText().toString(),mLastname.getText().toString(),mUsername.getText().toString(),mPassword.getText().toString());
+                    User user = new User(0,mName.getText().toString(),mLastname.getText().toString(),mUsername.getText().toString(),mPassword.getText().toString(),"");
                     databasHelper.addUser(user);
                     databasHelper.close();
                     Intent intent = new Intent(RegisterActivity.this , LoginActivity.class);

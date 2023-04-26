@@ -27,6 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
+        sqLiteDatabase.execSQL(CREATE_PET_TABLE);
+        sqLiteDatabase.execSQL(CREATE_REQUEST_TABLE);
         Log.i("DataBase", "Tables created");
     }
 
@@ -34,6 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         // If table  already exist
         sqLiteDatabase.execSQL(DROP_USER_TABLE);
+        sqLiteDatabase.execSQL(DROP_PET_TABLE);
+        sqLiteDatabase.execSQL(DROP_REQUEST_TABLE);
         onCreate(sqLiteDatabase);
         Log.i("DataBase", "Tables deleted");
     }
@@ -51,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region user table
 
-    // tables names
+    // tables User
     private static final String TABLE_USER = "user";
     // User Table Columns names
     private static final String USER_ID = "user_id";
@@ -60,19 +64,66 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String USER_EMAIL = "user_email";
     private static final String USER_PASSWORD = "user_password";
 
+    private static final String USER_PWDTOKEN = "user_pwd_teken";
+
+
     // create user table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + USER_NAME + " TEXT,"
             + USER_LAST_NAME + " TEXT," + USER_EMAIL + " TEXT,"
-            + USER_PASSWORD + " TEXT"  +")";
+            + USER_PASSWORD + " TEXT,"  + USER_PWDTOKEN +" TEXT" +")";
     // drop table user sql query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
 
     //endregion
 
+    //region pet table
+
+    // tables pet
+    private static final String TABLE_PET = "pet";
+    private static final String PET_ID = "pet_id";
+    private static final String PET_NAME = "pet_name";
+    private static final String PETBREED = "user_lastname";
+    private static final String PETGENDER = "user_email";
+    private static final String PETWEIGHT = "user_password";
+    private static final String PETHASREPORT = "user_password";
+    private static final String PETFORADAPTION = "user_password";
+    private static final String PETOWNERID = "user_pwd_teken";
+
+
+    // create pet table sql query
+    private String CREATE_PET_TABLE = "CREATE TABLE " + TABLE_PET + "("
+            + PET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + PET_NAME + " TEXT,"
+            + PETBREED + " TEXT," + PETGENDER + " TEXT,"
+            + PETWEIGHT + " REAL,"  + PETHASREPORT +" INTEGER," + PETFORADAPTION +" INTEGER, CONSTRAINT fk_owner FOREIGN KEY ("+ PETOWNERID +") REFERENCES "+ TABLE_USER+ "("+USER_ID+"))";
+    // drop table pet sql query
+    private String DROP_PET_TABLE = "DROP TABLE IF EXISTS " + TABLE_REQUEST;
+
+    //endregion
+
+    //region user table
+
+    // tables request
+    private static final String TABLE_REQUEST = "request";
+    // User Table Columns names
+    private static final String REQUEST_ID = "request_id";
+    private static final String REQUEST_ACCEPTED = "request_accepted";
+    private static final String REQUEST_OWNERID = "request_ownerid";
+    private static final String REQUEST_ADAPTERID = "request_adapterid";
+    private static final String REQUEST_PETID = "request_petid";
+
+    // create request table sql query
+    private String CREATE_REQUEST_TABLE = "CREATE TABLE " + TABLE_REQUEST + "("
+            + REQUEST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + REQUEST_ACCEPTED + " INTEGER,"
+            + REQUEST_OWNERID + " INTEGER," + REQUEST_ADAPTERID + " INTEGER, CONSTRAINT fk_pet FOREIGN KEY ("+ REQUEST_PETID +") REFERENCES "+ TABLE_PET+ "("+PET_ID+"))";
+    // drop table user sql query
+    private String DROP_REQUEST_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
+
+    //endregion
+
     //region user methods
 
-    // add user to user table
+    //region add user to user table
     public void addUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -81,13 +132,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(USER_LAST_NAME, user.getmLastname());
         values.put(USER_EMAIL, user.getmEmail());
         values.put(USER_PASSWORD, user.getmPassword());
+        values.put(USER_PWDTOKEN, user.getPwdToken());
 
         // Inserting Row
         db.insert(TABLE_USER, null, values);
         db.close();
     }
+    //endregion
 
-    // Void to check user exist in database
+    // region Void to check user exist in database
     public boolean checkUser(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = {USER_ID};
@@ -100,8 +153,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         if(count > 0)return true;
         else return false;
     }
+    //endregion
 
-    // get user by email
+    //region  Void to check user exist in database
+    public boolean checkUserEmail(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {USER_ID};
+        String selection = USER_EMAIL + "=?" ;
+        String[] selectionArgs = {email};
+        Cursor cursor = db.query(TABLE_USER, columns,selection,selectionArgs,null,null,null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        if(count > 0)return true;
+        else return false;
+    }
+    //endregion
+
+    //region get user by email
     public User getUser(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -122,5 +191,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return user;
     }
+    //endregion
     //endregion
 }

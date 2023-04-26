@@ -8,16 +8,18 @@ public class User
     private String mLastname;
     private String mEmail;
     private String mPassword;
+    private String pwdToken;
     //endregion
 
     //region constructor
     public User(){}
-    public User(int id, String mName, String mLastname, String mEmail, String mPassword) {
+    public User(int id, String mName, String mLastname, String mEmail, String mPassword,String pwdToken) {
         this.id = id;
         this.mName = mName;
         this.mLastname = mLastname;
         this.mEmail = mEmail;
         this.mPassword = mPassword;
+        this.pwdToken = pwdToken;
     }
     //endregion
 
@@ -60,6 +62,13 @@ public class User
 
     public void setmPassword(String mPassword) {
         this.mPassword = mPassword;
+    }
+    public String getPwdToken() {
+        return pwdToken;
+    }
+
+    public void setPwdToken(String mPassword) {
+        this.pwdToken = mPassword;
     }
     //endregion
 }
