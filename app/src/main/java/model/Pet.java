@@ -57,7 +57,7 @@ public class Pet {
         this.gender = gender;
     }
 
-    public float geWeight() {
+    public float getWeight() {
         return weight;
     }
     public void setWeight(float weight) {

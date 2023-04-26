@@ -3,6 +3,7 @@ package com.example.projetandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,8 +56,19 @@ public class LoginActivity extends AppCompatActivity{
                         Toast.makeText(LoginActivity.this, "Login" , Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this , MainActivity.class);
                         intent.putExtra("Login", mLogin.getText().toString());
-                        startActivity(intent);
+                        // region save logged in user data locally
 
+                        //get user id
+                        int mId = databasHelper.getUserId(mLogin.getText().toString());
+
+                        // create share preference
+                        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+                        SharedPreferences.Editor Ed=sp.edit();
+                        Ed.putInt("Id", mId);
+                        Ed.commit();
+
+                        startActivity(intent);
+                        //endregion
                     } else {
                         Toast.makeText(LoginActivity.this, "Login failed" , Toast.LENGTH_SHORT).show();
                     }
