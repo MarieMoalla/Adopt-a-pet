@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProjetAndroid</string>
+    <string name="empty_view_title_text">empty_view_title_text</string>
+    <string name="empty_view_subtitle_text">empty_view_subtitle_text</string>
 </resources>

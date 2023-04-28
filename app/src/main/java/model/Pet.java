@@ -5,18 +5,18 @@ public class Pet {
     private int id;
     private String name;
     private String breed;
-    private String gender;
-    private float weight;
-    private int age;
-    private boolean hasReport;
-    private boolean forAdaption = false;
+    private String gender="male";
+    private float weight=1;
+    private int age=1;
+    private int hasReport=0;
+    private int forAdaption =0;
     //foreign key
-    private int ownerId;
+    private int ownerId=1;
     //endregion
 
     //region constructor
     public Pet(){}
-    public Pet(int id, String name, String breed, String gender, float weight, int age, boolean  hasReport, boolean forAdaption,int ownerId) {
+    public Pet(int id, String name, String breed, String gender, float weight, int age, int  hasReport, int forAdaption,int ownerId) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -64,17 +64,17 @@ public class Pet {
         this.weight = weight;
     }
 
-    public boolean getHasReport() {
+    public int getHasReport() {
         return hasReport;
     }
-    public void setHasReport(boolean hasReport) {
+    public void setHasReport(int hasReport) {
         this.hasReport = hasReport;
     }
 
-    public boolean getForAdaption() {
+    public int getForAdaption() {
         return forAdaption;
     }
-    public void setForAdaption(boolean forAdaption) {
+    public void setForAdaption(int forAdaption) {
         this.forAdaption = forAdaption;
     }
 

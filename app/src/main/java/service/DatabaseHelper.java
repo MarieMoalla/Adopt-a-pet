@@ -10,19 +10,33 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
+
+import com.example.projetandroid.LoginActivity;
+import com.example.projetandroid.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Pet;
 import model.User;
+import adapter.PetListAdapter;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region constructor
-
     private Context mContext;
+
+    //region datbase config
+
+    // Database Version
+    private static final int DATABASE_VERSION = 8;
+    // Database Name
+    private static final String DATABASE_NAME = "miniprojet.db";
+
+    //endregion
 
     public DatabaseHelper(Context context){
         super(context ,DATABASE_NAME,null,DATABASE_VERSION );
@@ -33,16 +47,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region interface method
 
-    //get current user id
-    public int currentUserId() {
-        SharedPreferences sp = mContext.getSharedPreferences("Login", Context.MODE_PRIVATE);
-        return sp.getInt("Id",0);
-    }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
         sqLiteDatabase.execSQL(CREATE_PET_TABLE);
         sqLiteDatabase.execSQL(CREATE_REQUEST_TABLE);
+
         Log.i("DataBase", "Tables created");
     }
 
@@ -58,14 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //endregion
 
-    //region datbase config
-
-    // Database Version
-    private static final int DATABASE_VERSION = 2;
-    // Database Name
-    private static final String DATABASE_NAME = "miniprojet.db";
-
-    //endregion
+    //region USER
 
     //region user table
 
@@ -91,7 +94,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //endregion
 
-    //region user methods
+    //region  get current user id
+    public int currentUserId() {
+        SharedPreferences sp = mContext.getSharedPreferences("Login", Context.MODE_PRIVATE);
+        return sp.getInt("Id",0);
+    }
+    //endregion
 
     //region add user to user table
     public void addUser(User user) {
@@ -125,7 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
     //endregion
 
-    //region  Void to check user exist in database
+    //region   to check user email
     public boolean checkUserEmail(String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = {USER_ID};
@@ -185,7 +193,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return user.getId();
     }
     //endregion
+
     //endregion
+
+    //region PET
 
     //region pet table
 
@@ -193,21 +204,23 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String TABLE_PET = "pet";
     private static final String PET_ID = "pet_id";
     private static final String PET_NAME = "pet_name";
-    private static final String PETBREED = "user_lastname";
-    private static final String PETGENDER = "user_email";
-    private static final String PETWEIGHT = "user_password";
-    private static final String PETHASREPORT = "user_password";
-    private static final String PETFORADAPTION = "user_password";
-    private static final String PETOWNERID = "user_pwd_teken";
+    private static final String PETBREED = "pet_breed";
+    private static final String PETGENDER = "pet_gender";
+    private static final String PETWEIGHT = "pet_weight";
+    private static final String PETHASREPORT = "pet_hasreport";
+    private static final String PETFORADAPTION = "pet_foradoption";
+    private static final String PETOWNERID = "pet_ownerid";
 
 
     // create pet table sql query
     private String CREATE_PET_TABLE = "CREATE TABLE " + TABLE_PET + "("
             + PET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + PET_NAME + " TEXT,"
             + PETBREED + " TEXT," + PETGENDER + " TEXT,"
-            + PETWEIGHT + " REAL,"  + PETHASREPORT +" INTEGER," + PETFORADAPTION +" INTEGER, CONSTRAINT fk_owner FOREIGN KEY ("+ PETOWNERID +") REFERENCES "+ TABLE_USER+ "("+USER_ID+"))";
+            + PETWEIGHT + " REAL,"  + PETHASREPORT +" INTEGER," + PETFORADAPTION +" INTEGER,"+ PETOWNERID +" INTEGER, "
+            + " FOREIGN KEY ("+PETOWNERID+") REFERENCES "+TABLE_USER+"("+USER_ID+"));";
+
     // drop table pet sql query
-    private String DROP_PET_TABLE = "DROP TABLE IF EXISTS " + TABLE_REQUEST;
+    private String DROP_PET_TABLE = "DROP TABLE IF EXISTS " + TABLE_PET;
 
     //endregion
 
@@ -227,7 +240,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(PETOWNERID, pet.getOwnerId());
 
         // Inserting Row
-        db.insert(TABLE_PET, null, values);
+        try{
+            Log.i("pets values",values.toString());
+            db.insert(TABLE_PET, null, values);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         db.close();
     }
     //endregion
@@ -235,25 +253,32 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //region get my pets
 
     public List<Pet> getMyPets() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        List<Pet> petsList = new ArrayList<Pet>();
 
-        Cursor cursor = db.query(TABLE_PET, new String[] { PET_ID , PET_NAME ,PETBREED , PETGENDER ,PETWEIGHT,PETHASREPORT , PETFORADAPTION, PETOWNERID},
-                PETOWNERID + "=?",
-                new String[] { String.valueOf(this.currentUserId()) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        List<Pet> pets = new ArrayList<Pet>();
+        String selectQuery = "SELECT * FROM " + TABLE_PET;
 
-        while(!cursor.isAfterLast())
-        {
-            Pet p = new Pet();
-            p.setId(cursor.getInt(cursor.getColumnIndexOrThrow(PET_ID)));
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
-            cursor.moveToNext();
+        if (cursor.moveToFirst()) {
+            do {
+                Pet pet = new Pet();
+                pet.setId(Integer.parseInt(cursor.getString(0)));
+                pet.setName(cursor.getString(1));
+                pet.setBreed(cursor.getString(2));
+                pet.setGender(cursor.getString(3));
+                pet.setWeight(cursor.getFloat(4));
+                pet.setHasReport(Integer.parseInt(cursor.getString(5)));
+                pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
+                pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
+                petsList.add(pet);
+            } while (cursor.moveToNext());
         }
-        return pets;
+
+        return petsList;
     }
+
     //endregion
 
     //endregion
@@ -271,10 +296,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     // create request table sql query
     private String CREATE_REQUEST_TABLE = "CREATE TABLE " + TABLE_REQUEST + "("
-            + REQUEST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + REQUEST_ACCEPTED + " INTEGER,"
-            + REQUEST_OWNERID + " INTEGER," + REQUEST_ADAPTERID + " INTEGER, CONSTRAINT fk_pet FOREIGN KEY ("+ REQUEST_PETID +") REFERENCES "+ TABLE_PET+ "("+PET_ID+"))";
+            + REQUEST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + REQUEST_ACCEPTED + " INTEGER,"
+            + REQUEST_OWNERID + " INTEGER,"
+            + REQUEST_ADAPTERID + " INTEGER,"
+            + REQUEST_PETID + " INTEGER,"
+            + "FOREIGN KEY ("+ REQUEST_PETID +") REFERENCES "+ TABLE_PET+ "("+PET_ID+"))";
+
     // drop table user sql query
-    private String DROP_REQUEST_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
+    private String DROP_REQUEST_TABLE = "DROP TABLE IF EXISTS " + TABLE_REQUEST;
 
     //endregion
 
