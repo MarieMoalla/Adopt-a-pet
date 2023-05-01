@@ -1,39 +1,25 @@
 package com.example.projetandroid;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import adapter.PetListAdapter;
-import model.Pet;
 import service.DatabaseHelper;
+import service.PetsServices;
 
 public class MainActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
+    private PetsServices petsServices;
     private ListView listView;
-    Button madd_pet_btn;
-    TextView pet_id;
-    TextView pet_name;
-    TextView pet_breed;
+    private Button add_pet_btn;
+
+    public int id;
+
+    private AppBarConfiguration mAppBarConfiguration;
 
 
     @Override
@@ -41,63 +27,90 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //get current user id
+        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+        id = sp1.getInt("Id", 0);
+
+        //instanciate pet service
+        petsServices = new PetsServices(this);
+        //instanciate database helper
         databaseHelper = new DatabaseHelper(this);
-        //madd_pet_btn = (Button) findViewById(R.id.add_pet);
 
-        pet_id = findViewById(R.id.pet_id_textview);
-        pet_name = findViewById(R.id.pet_name_textview);
-        pet_breed = findViewById(R.id.pet_breed_textview);
 
-        listView = findViewById(R.id.list);
 
-        displayPets();
+        //region display list
+        /*listView = findViewById(R.id.list);
+        petsServices.displayPets(id,listView);
+        petsServices.displayMyPets(id,listView);*/
+        // Set the content view
+        //endregion
 
-        //region add pet button function
-        /*madd_pet_btn.setOnClickListener(new View.OnClickListener() {
+        /* // navigate to other activity
+        my_pet_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("mng","inside my pets");
+                Toast.makeText(MainActivity.this, "To my pets page", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this , MyPetsActivity.class);
+                intent.putExtra("Pet created.", my_pet_btn.getText().toString());
+                startActivity(intent);
+            }});
+
+*/
+
+        //region add pet button function
+        /*
+        add_pet_btn = findViewById(R.id.add_pet_btn);
+        add_pet_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Pet p = new Pet();
+
                 EditText nameEditText = findViewById(R.id.pet_name);
+                p.setName(nameEditText.getText().toString());
+
                 EditText breedEditText = findViewById(R.id.pet_breed);
+                p.setBreed(breedEditText.getText().toString());
 
-                String name = nameEditText.getText().toString();
-                String breed = breedEditText.getText().toString();
+                EditText genderEditText = findViewById(R.id.pet_gender);
+                p.setGender(genderEditText.getText().toString());
 
-                // Check if name and breed are not empty
-                if (name.trim().isEmpty() || breed.trim().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Name and breed cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
+                EditText weightEditText = findViewById(R.id.pet_weight);
+                String inputText = weightEditText.getText().toString();
+                float weight = Float.parseFloat(inputText);
+                p.setWeight(weight);
+
+                EditText ageEditText = findViewById(R.id.pet_age);
+                String inputAge = ageEditText.getText().toString();
+                int age = Integer.parseInt(inputAge);
+                p.setAge(age);
+
+                p.setOwnerId(id);
+
+                CheckBox yes_foradaption = findViewById(R.id.yes_foradaption);
+                CheckBox yes_hasreport= findViewById(R.id.yes_hasreport);
+
+                if (yes_foradaption.isChecked()) {
+                    p.setForAdaption(1);
+                } else {
+                    p.setForAdaption(0);
                 }
 
-                DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+                if (yes_hasreport.isChecked()) {
+                    p.setHasReport(1);
+                } else {
+                    p.setHasReport(0);
+                }
 
                 // Add pet to database
-                Pet p = new Pet();
-                p.setName(name);
-                p.setBreed(breed);
                 try {
-                    databaseHelper.addPet(p);
-                    databaseHelper.close();
-                    Intent intent = new Intent(MainActivity.this , EditPetActivity.class);
-                    intent.putExtra("Pet created.", madd_pet_btn.getText().toString());
-                    startActivity(intent);
+                    petsServices.createPet(p);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-
             }
-        });
-        */
-
+        });*/
         //endregion
-    }
-
-    private void displayPets() {
-        List<Pet> pets = databaseHelper.getMyPets();
-        for (Pet p : pets) {
-            Log.i("petinfo ",p.getName());
-
-        }
-        PetListAdapter adapter = new PetListAdapter(this, pets);
-        listView.setAdapter(adapter);
     }
 }

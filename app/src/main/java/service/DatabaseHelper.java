@@ -1,28 +1,18 @@
 package service;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-
-import com.example.projetandroid.LoginActivity;
-import com.example.projetandroid.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Pet;
 import model.User;
-import adapter.PetListAdapter;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
@@ -32,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //region datbase config
 
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 14;
     // Database Name
     private static final String DATABASE_NAME = "miniprojet.db";
 
@@ -207,6 +197,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String PETBREED = "pet_breed";
     private static final String PETGENDER = "pet_gender";
     private static final String PETWEIGHT = "pet_weight";
+
+    private static final String PETAGE = "pet_age";
     private static final String PETHASREPORT = "pet_hasreport";
     private static final String PETFORADAPTION = "pet_foradoption";
     private static final String PETOWNERID = "pet_ownerid";
@@ -216,7 +208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private String CREATE_PET_TABLE = "CREATE TABLE " + TABLE_PET + "("
             + PET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + PET_NAME + " TEXT,"
             + PETBREED + " TEXT," + PETGENDER + " TEXT,"
-            + PETWEIGHT + " REAL,"  + PETHASREPORT +" INTEGER," + PETFORADAPTION +" INTEGER,"+ PETOWNERID +" INTEGER, "
+            + PETWEIGHT + " REAL," + PETAGE + " INTEGER, "  + PETHASREPORT +" INTEGER," + PETFORADAPTION +" INTEGER,"+ PETOWNERID +" INTEGER, "
             + " FOREIGN KEY ("+PETOWNERID+") REFERENCES "+TABLE_USER+"("+USER_ID+"));";
 
     // drop table pet sql query
@@ -228,14 +220,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region Create Pet
     public void addPet(Pet pet) {
+        Log.i("value pet",pet.getName());
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(PET_NAME, pet.getName());
         values.put(PETBREED, pet.getBreed());
         values.put(PETWEIGHT, pet.getWeight());
         values.put(PETGENDER, pet.getGender());
         values.put(PETFORADAPTION, pet.getForAdaption());
+        values.put(PETAGE, pet.getAge());
         values.put(PETHASREPORT, pet.getHasReport());
         values.put(PETOWNERID, pet.getOwnerId());
 
@@ -252,7 +245,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region get my pets
 
-    public List<Pet> getMyPets() {
+    public List<Pet> getMyPets(int ownerId) {
         List<Pet> petsList = new ArrayList<Pet>();
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -263,22 +256,89 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         if (cursor.moveToFirst()) {
             do {
-                Pet pet = new Pet();
-                pet.setId(Integer.parseInt(cursor.getString(0)));
-                pet.setName(cursor.getString(1));
-                pet.setBreed(cursor.getString(2));
-                pet.setGender(cursor.getString(3));
-                pet.setWeight(cursor.getFloat(4));
-                pet.setHasReport(Integer.parseInt(cursor.getString(5)));
-                pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
-                pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
-                petsList.add(pet);
+                if(Integer.parseInt(cursor.getString(7)) == ownerId)
+                {
+                    Pet pet = new Pet();
+                    pet.setId(Integer.parseInt(cursor.getString(0)));
+                    pet.setName(cursor.getString(1));
+                    pet.setBreed(cursor.getString(2));
+                    pet.setGender(cursor.getString(3));
+                    pet.setWeight(cursor.getFloat(4));
+                    pet.setHasReport(Integer.parseInt(cursor.getString(5)));
+                    pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
+                    pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
+                    petsList.add(pet);
+                }
             } while (cursor.moveToNext());
         }
 
         return petsList;
     }
 
+    //endregion
+
+    //region get all pets for adaption
+
+    public List<Pet> getAllPets() {
+        List<Pet> petsList = new ArrayList<Pet>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_PET;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                if(Integer.parseInt(cursor.getString(6)) == 1 )
+                {
+                    Pet pet = new Pet();
+                    pet.setId(Integer.parseInt(cursor.getString(0)));
+                    pet.setName(cursor.getString(1));
+                    pet.setBreed(cursor.getString(2));
+                    pet.setGender(cursor.getString(3));
+                    pet.setWeight(cursor.getFloat(4));
+                    pet.setHasReport(Integer.parseInt(cursor.getString(5)));
+                    pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
+                    pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
+                    petsList.add(pet);
+                }
+
+            } while (cursor.moveToNext());
+        }
+
+        return petsList;
+    }
+
+    //endregion
+
+    //region get pet idetail
+    public Pet getpetDetail(int petid) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_PET + " WHERE pet_id = "+ petid;
+
+        try
+        {
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null ) cursor.moveToFirst();
+            Pet p = new Pet(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    Float.parseFloat(cursor.getString(4)),
+                    Integer.parseInt(cursor.getString(5)),
+                    Integer.parseInt(cursor.getString(6)),
+                    Integer.parseInt(cursor.getString(7)),
+                    Integer.parseInt(cursor.getString(8)));
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     //endregion
 
     //endregion

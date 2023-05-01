@@ -7,11 +7,11 @@ public class Pet {
     private String breed;
     private String gender="male";
     private float weight=1;
-    private int age=1;
+    private int age;
     private int hasReport=0;
     private int forAdaption =0;
     //foreign key
-    private int ownerId=1;
+    private int ownerId;
     //endregion
 
     //region constructor
@@ -24,6 +24,7 @@ public class Pet {
         this.weight = weight;
         this.hasReport = hasReport;
         this.forAdaption = forAdaption;
+        this.age=age;
         this.ownerId = ownerId;
     }
     //endregion
@@ -62,6 +63,13 @@ public class Pet {
     }
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public int getAge () {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getHasReport() {

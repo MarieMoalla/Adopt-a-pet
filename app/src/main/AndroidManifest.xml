@@ -24,14 +24,10 @@
             android:name=".ForgetPwd"
             android:exported="false"/>
         <activity
-            android:name=".EditPetActivity"
-            android:exported="false"/>
-        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

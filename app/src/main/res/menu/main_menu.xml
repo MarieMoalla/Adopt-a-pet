@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_24"
+        android:title="Adaption"
+        app:showAsAction="always"></item>
+
+    <item
+        android:id="@+id/page_2"
+        android:icon="@drawable/ic_account_24"
+        android:title="Account"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/request"
+        android:icon="@drawable/request"
+        android:title="Request"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/my_peyts"
+        android:icon="@drawable/paws"
+        android:title="My Pets"
+        app:showAsAction="always"></item>
+</menu>

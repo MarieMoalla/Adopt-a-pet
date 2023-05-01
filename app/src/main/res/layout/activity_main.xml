@@ -1,52 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/background"
     android:layout_height="match_parent"
-    android:id="@+id/mainLayout"
-    tools:context=".MainActivity">
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">-->
 
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
         android:orientation="vertical"
-        android:padding="16dp">
+        tools:context=".RegisterActivity">
 
-
+    <dat
+        <EditText
+            android:id="@+id/pet_name"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Name"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            />
+        <EditText
+            android:id="@+id/pet_breed"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Breed"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white" />
+        <EditText
+            android:id="@+id/pet_gender"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet gender"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white"/>
+        <EditText
+            android:id="@+id/pet_weight"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet weight"
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white" />
+        <EditText
+            android:id="@+id/pet_age"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Age"
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/white" />
         <TextView
-            android:id="@+id/pet_name_textview"
+            android:id="@+id/question_has_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/pet_breed_textview"
+            android:fontFamily="@font/montserrat"
+            android:text="Pet has report ?"
+            android:textColor="@color/button_color"
+            android:textStyle="bold"/>
+        <CheckBox
+            android:id="@+id/yes_hasreport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/pet_id_textview"
+            android:text="yes" />
+        <CheckBox
+            android:id="@+id/no_has_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            android:text="no" />
+        <TextView
+            android:id="@+id/q_for_adaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Pet has report ?"
+            android:textColor="@color/button_color"
+            android:textStyle="bold"/>
+        <CheckBox
+            android:id="@+id/yes_foradaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="yes" />
+        <CheckBox
+            android:id="@+id/no_noforadaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no" />
+        <Button
+            android:id="@+id/add_pet_btn"
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/montserrat"
+            android:text="Add pet"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18dp" />
+
 
     </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-    </LinearLayout>
-
-</RelativeLayout>
