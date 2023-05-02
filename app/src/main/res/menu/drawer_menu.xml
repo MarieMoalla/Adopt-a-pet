@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:tools="http://schemas.android.com/tools"
+tools:showIn="navigation_view"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+   >
+
+
+<group android:checkableBehavior="single"
+
+    >
+    <item
+        android:id="@+id/nav_adoption"
+        android:icon="@drawable/ic_pet"
+        android:title="Adoption" />
+    <item
+        android:id="@+id/nav_mypet"
+        android:icon="@drawable/ic_mypets"
+        android:title="My pets"
+       />
+    <item
+        android:id="@+id/navaddpet"
+        android:icon="@drawable/ic_addpet"
+        android:title="Add pet" />
+    <item
+        android:id="@+id/navrequests"
+        android:icon="@drawable/request"
+        android:title="Requests" />
+</group>
+
+<item android:title="Others"   >
+    <menu>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/nav_logout"
+
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
+    </menu>
+</item>
+
+</menu>
