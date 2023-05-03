@@ -13,6 +13,6 @@
         android:id="@+id/main_iv_logo"
         android:layout_width="291dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo1"/>
 
 </LinearLayout>

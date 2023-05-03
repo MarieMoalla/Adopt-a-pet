@@ -2,35 +2,32 @@ package com.example.projetandroid;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.navigation.ui.AppBarConfiguration;
-
-import com.example.projetandroid.databinding.ActivityMainBinding;
-
-import model.Pet;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.widget.Toolbar;
 import service.DatabaseHelper;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import service.PetsServices;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseHelper databaseHelper;
     private PetsServices petsServices;
     private ListView listView;
-    private Button update_pet_btn;
+    private DrawerLayout drawer;
+
+    private Button add_pet_btn;
 
     public int id;
 
     private AppBarConfiguration mAppBarConfiguration;
-
-    //databainding
-    private ActivityMainBinding binding;
-    private PetViewModel petViewModel;
 
 
     @Override
@@ -38,61 +35,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //instanciate pet service
-        petsServices = new PetsServices(this);
-        //instanciate database helper
-        databaseHelper = new DatabaseHelper(this);
+        //Toolebar
 
-        //get pet by id
-        Pet pet = new Pet();
-        //Log.i("pety id",String.valueOf(4));
-        pet = petsServices.getPetById(4);
-        final Pet pet1 = new Pet(4,pet.getName(), pet.getBreed(), pet.getGender(),pet.getWeight(), pet.getAge(),pet.getHasReport(), pet.getForAdaption(),pet.getOwnerId());
-        //
-
-        //two way binding data
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        petViewModel = new PetViewModel();
-        binding.setViewModel(petViewModel);
-        binding.setLifecycleOwner(this);
-
-        //set view data with pet data
-        petViewModel.setPet(pet);
-        EditText petName = findViewById(R.id.pet_name);
-        EditText petGender = findViewById(R.id.pet_gender);
-        EditText petBreed = findViewById(R.id.pet_breed);
-        EditText petWeight = findViewById(R.id.pet_weight);
-        EditText petAge = findViewById(R.id.pet_age);
-
-        //update pet button
-
-        update_pet_btn = findViewById(R.id.update_pet_btn);
-        update_pet_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("test update", petName.getText().toString());
-
-                //update inputs in database
-                //petViewModel.setPet(new Pet (petName.getText().toString(),petBreed.getText().toString(),petGender.getText().toString(),Integer.parseInt(petWeight.getText().toString()),Integer.parseInt(petAge.getText().toString())));
-                try
-                {
-                    petsServices.updatePet(4,petName.getText().toString(),petBreed.getText().toString(),petGender.getText().toString(),Float.parseFloat(petWeight.getText().toString()),Integer.parseInt(petAge.getText().toString()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }});
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-
-        //petViewModel.getPet().observe(this,p -> {Log.i("change",p.getName());});
-        //
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AdoptionFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_adoption);
+        }
 
         //get current user id
         SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
         id = sp1.getInt("Id", 0);
 
-
+        //instanciate pet service
+        petsServices = new PetsServices(this);
+        //instanciate database helper
+        databaseHelper = new DatabaseHelper(this);
 
 
 
@@ -170,5 +140,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
         //endregion
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_adoption:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AdoptionFragment()).commit();
+                break;
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+                break;
+
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).commit();
+                break;
+
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

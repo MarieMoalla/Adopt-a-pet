@@ -2,13 +2,13 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent" >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -17,15 +17,25 @@
         android:layout_height="122dp"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
-        android:text="Welcome !"
+        android:text="Make a New Friend  ! "
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Adopt a Pet today "
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -35,7 +45,7 @@
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="2dp"
         android:fontFamily="@font/montserrat"
         android:hint="E-mail"
         android:textColorHint="@color/white"
@@ -73,7 +83,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
@@ -103,7 +113,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
         <TextView
