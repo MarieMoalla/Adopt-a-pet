@@ -9,9 +9,13 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">-->
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.projetandroid.PetViewModel"/>
+    </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +23,7 @@
         android:orientation="vertical"
         tools:context=".RegisterActivity">
 
-    <dat
+
         <EditText
             android:id="@+id/pet_name"
             android:layout_width="320dp"
@@ -27,7 +31,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
-            android:hint="Pet Name"
+            android:text="@={viewModel.petName}"
             android:inputType="textPersonName"
             android:textColorHint="@color/white"
             android:backgroundTint="@color/white"
@@ -40,7 +44,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
-            android:hint="Pet Breed"
+            android:text="@={viewModel.petBreed}"
             android:textColorHint="@color/white"
             android:backgroundTint="@color/white"
             android:textColor="@color/white" />
@@ -51,7 +55,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
-            android:hint="Pet gender"
+            android:text="@={viewModel.petGender}"
             android:textColorHint="@color/white"
             android:backgroundTint="@color/white"
             android:textColor="@color/white"/>
@@ -62,7 +66,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
-            android:hint="Pet weight"
+            android:text="@={viewModel.petWeight}"
             android:inputType="number"
             android:textColorHint="@color/white"
             android:backgroundTint="@color/white"
@@ -74,7 +78,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat"
-            android:hint="Pet Age"
+            android:text="@={viewModel.petAge}"
             android:inputType="number"
             android:textColorHint="@color/white"
             android:backgroundTint="@color/white"
@@ -116,17 +120,18 @@
             android:layout_height="wrap_content"
             android:text="no" />
         <Button
-            android:id="@+id/add_pet_btn"
+            android:id="@+id/update_pet_btn"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:fontFamily="@font/montserrat"
-            android:text="Add pet"
+            android:text="Update pet"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18dp" />
 
 
     </LinearLayout>
+</layout>

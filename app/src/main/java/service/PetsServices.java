@@ -38,8 +38,14 @@ public class PetsServices extends Service {
 
     public Pet getPetById (int id)
     {
+        Log.i("pety id",String.valueOf(id));
         return databaseHelper.getpetDetail(id);
 
+    }
+
+    public boolean updatePet (int id, String name, String breed, String gender, float weight, int age)
+    {
+         return databaseHelper.updatePet(id,name,breed,gender,weight,age);
     }
 
     public void displayPets(int id, ListView listView) {
