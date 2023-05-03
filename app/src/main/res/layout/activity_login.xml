@@ -2,7 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/backgPet"
     android:layout_height="match_parent" >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,9 +13,9 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_width="170dp"
-        android:layout_height="122dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="200dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="60dp"
         android:layout_gravity="center"
         android:src="@drawable/logo1"/>
 
@@ -26,7 +26,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="Make a New Friend  ! "
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
     <TextView
@@ -36,7 +36,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/montserrat"
         android:text="Adopt a Pet today "
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -45,12 +45,12 @@
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:hint="E-mail"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/white"
+        android:textColorHint="@color/blackj"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/black"
         />
 
     <EditText
@@ -61,9 +61,9 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat"
         android:hint="Password"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/black"
         android:textColor="@color/white"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:inputType="textPassword"
         />
 
@@ -72,18 +72,18 @@
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button2"
         android:fontFamily="@font/montserrat"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
 
@@ -93,7 +93,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="Don't have an account yet ?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
 
@@ -122,7 +122,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="Did you forget your password ?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <TextView

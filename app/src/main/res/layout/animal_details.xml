@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/animal_img_details"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dog1" />
+
+
+    <TextView
+        android:id="@+id/animal_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/montserrat"
+        android:text="About"
+        android:textColor="@android:color/Black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/animal_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animal_age"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+
+        android:text="Gender"
+        android:textColor="@android:color/Black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/animal_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/Black"
+        android:text="Adopt"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/animal_gender"
+
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/animal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animal_img_details"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="72dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Animal Name"
+        android:textColor="@color/Black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/animal_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animal_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="dp"
+        android:fontFamily="@font/montserrat"
+        android:text="About"
+        android:textColor="@color/Black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button2"
+        android:gravity="center"
+        android:text="Adopt"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>
+
