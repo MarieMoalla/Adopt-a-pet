@@ -1,7 +1,11 @@
 package adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.example.projetandroid.R;
 
@@ -10,32 +14,32 @@ import java.util.List;
 import model.Pet;
 
 public class PetListAdapter extends ArrayAdapter<Pet> {
-    private final Context context;
-    private final List<Pet> petList;
+    private List<Pet> pets;
+    private Context context;
 
-    public PetListAdapter(Context context, List<Pet> petList) {
-        super(context, R.layout.activity_main, petList);
+    public PetListAdapter(Context context, List<Pet> pets) {
+        super(context, 0, pets);
         this.context = context;
-        this.petList = petList;
+        this.pets = pets;
     }
-/*  //show pet list adapter
+ //show pet list adapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.activity_main, parent, false);
+        View rowView = inflater.inflate(R.layout.fragment_adoption, parent, false);
 
         //Get references to the text views in the layout
         TextView petNameTextView = rowView.findViewById(R.id.pet_name_textview);
-        TextView petBreedTextView = rowView.findViewById(R.id.pet_breed_textview);
-        TextView petIdTextView = rowView.findViewById(R.id.pet_id_textview);
+        TextView petBreedTextView = rowView.findViewById(R.id.pet_id_textview);
+        TextView petIdTextView = rowView.findViewById(R.id.pet_breed_textview);
 
         // Set the text of the text views to the pet's name, breed, and ID
-        petNameTextView.setText(petList.get(position).getName());
-        petBreedTextView.setText(petList.get(position).getBreed());
-        petIdTextView.setText(Integer.toString(petList.get(position).getId()));
+        petNameTextView.setText(pets.get(position).getName());
+        petBreedTextView.setText(pets.get(position).getBreed());
+        petIdTextView.setText(Integer.toString(pets.get(position).getId()));
 
         return rowView;
     }
-    */
+
 
 }

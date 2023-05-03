@@ -7,14 +7,20 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.ui.AppBarConfiguration;
-import com.google.android.material.navigation.NavigationView;
-import androidx.appcompat.widget.Toolbar;
-import service.DatabaseHelper;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.AppBarConfiguration;
+
+import com.example.projetandroid.home.AddPetFragment;
+import com.google.android.material.navigation.NavigationView;
+
+import service.DatabaseHelper;
 import service.PetsServices;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public int id;
 
+
     private AppBarConfiguration mAppBarConfiguration;
 
 
@@ -34,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Toolebar
 
@@ -50,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
                     new AdoptionFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_adoption);
         }
@@ -60,11 +68,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         id = sp1.getInt("Id", 0);
 
         //instanciate pet service
-        petsServices = new PetsServices(this);
+        //petsServices = new PetsServices(this);
         //instanciate database helper
-        databaseHelper = new DatabaseHelper(this);
-
-
+        //databaseHelper = new DatabaseHelper(this);
 
         //region display list
         /*listView = findViewById(R.id.list);
@@ -144,27 +150,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        int id = item.getItemId();
+        item.setChecked(true);
+        switch (id) {
             case R.id.nav_adoption:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AdoptionFragment()).commit();
+                // Navigate to the AdoptionFragment
+                replaceFragment(new AdoptionFragment());
+                break;
+            case R.id.nav_mypet:
+                // Navigate to the MyPetFragment
+                break;
+            case R.id.navaddpet:
+                // Navigate to the AddPetFragment
+                replaceFragment(new AddPetFragment());
+                break;
+            case R.id.navrequests:
+                // Navigate to the RequestsFragment
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commit();
+                // Navigate to the ProfileFragment
                 break;
-
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingsFragment()).commit();
+                // Navigate to the SettingsFragment
+                break;
+            case R.id.nav_logout:
+                // Handle logout
                 break;
 
         }
 
+        // Close the navigation drawer
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
+    //replace cutrrent fragment with next one
+    private void replaceFragment(Fragment f)
+    {
+        FragmentManager fManager = getSupportFragmentManager();
+        FragmentTransaction fTransaction = fManager.beginTransaction();
+        fTransaction.replace(R.id.frameLayout,f);
+        fTransaction.commit();
+    }
+
+
+    /*
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -172,5 +204,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 }

@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.Pet;
 import model.User;
@@ -22,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //region datbase config
 
     // Database Version
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 16;
     // Database Name
     private static final String DATABASE_NAME = "miniprojet.db";
 
@@ -220,7 +219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region Create Pet
     public void addPet(Pet pet) {
-        Log.i("value pet",pet.getName());
+        Log.i("value pet",String.valueOf(pet.getName()));
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PET_NAME, pet.getName());
@@ -245,8 +244,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region get my pets
 
-    public List<Pet> getMyPets(int ownerId) {
-        List<Pet> petsList = new ArrayList<Pet>();
+    public ArrayList<Pet> getMyPets(int ownerId) {
+        ArrayList<Pet> petsList = new ArrayList<Pet>();
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -303,8 +302,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //region get all pets for adaption
 
-    public List<Pet> getAllPets() {
-        List<Pet> petsList = new ArrayList<Pet>();
+    public ArrayList<Pet> getAllPets() {
+        ArrayList<Pet> petsList = new ArrayList<Pet>();
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -314,6 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         if (cursor.moveToFirst()) {
             do {
+
                 if(Integer.parseInt(cursor.getString(6)) == 1 )
                 {
                     Pet pet = new Pet();

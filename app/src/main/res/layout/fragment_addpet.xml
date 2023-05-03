@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:id="@+id/fragment_addpet"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/pet_name"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Pet Name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        android:text=""
+        />
+    <EditText
+        android:id="@+id/pet_breed"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Pet Breed"
+        android:text=""
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/pet_gender"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Pet gender"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:text=""
+        android:textColor="@color/white"/>
+    <EditText
+        android:id="@+id/pet_weight"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text=""
+        android:hint="Pet weight"
+        android:inputType="number"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white" />
+    <EditText
+        android:id="@+id/pet_age"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text=""
+        android:hint="Pet Age"
+        android:inputType="number"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white" />
+    <TextView
+        android:id="@+id/question_has_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="50dp"
+        android:text="Pet has report ?"
+        android:textColor="@color/button_color"
+
+        android:textStyle="bold"/>
+    <CheckBox
+        android:id="@+id/yes_hasreport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="yes" />
+    <CheckBox
+        android:id="@+id/no_has_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="no" />
+    <TextView
+        android:id="@+id/q_for_adaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="Pet has report ?"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/button_color"
+        android:textStyle="bold"/>
+    <CheckBox
+        android:id="@+id/yes_foradaption"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:text="yes" />
+    <CheckBox
+        android:id="@+id/no_noforadaption"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:text="no" />
+    <Button
+        android:id="@+id/add_pet_btn"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/montserrat"
+        android:text="Add pet"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18dp" />
+</LinearLayout>
+</ScrollView>

@@ -32,7 +32,7 @@ public class PetsServices extends Service {
         try {
             databaseHelper.addPet(pet);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw  new RuntimeException(e);
         }
     }
 
@@ -48,14 +48,15 @@ public class PetsServices extends Service {
          return databaseHelper.updatePet(id,name,breed,gender,weight,age);
     }
 
-    public void displayPets(int id, ListView listView) {
+    /*public void displayPets(int id, ListView listView, Context contx) {
         List<Pet> pets = databaseHelper.getAllPets();
         Log.i("Current logged in user ", String.valueOf(id));
-        for (Pet p : pets)
-            Log.i("petinfo ",p.getName());
-        PetListAdapter adapter = new PetListAdapter(this, pets);
-        listView.setAdapter(adapter);
-    }
+        if(!pets.isEmpty())
+        {
+            PetListAdapter adapter = new PetListAdapter(contx, pets);
+            listView.setAdapter(adapter);
+        }
+    }*/
 
     public void displayMyPets(int id, ListView listView) {
         List<Pet> pets = databaseHelper.getMyPets(id);
