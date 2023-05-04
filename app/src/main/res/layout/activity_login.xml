@@ -2,7 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/backgPet"
+    android:background="@drawable/backgpet"
     android:layout_height="match_parent" >
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:hint="E-mail"
-        android:textColorHint="@color/blackj"
+        android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:backgroundTint="@color/black"
         />
