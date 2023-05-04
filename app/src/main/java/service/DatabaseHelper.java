@@ -313,8 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         if (cursor.moveToFirst()) {
             do {
-
-                if(Integer.parseInt(cursor.getString(6)) == 1 )
+                if(Integer.parseInt(cursor.getString(7)) == 1 )
                 {
                     Pet pet = new Pet();
                     pet.setId(Integer.parseInt(cursor.getString(0)));

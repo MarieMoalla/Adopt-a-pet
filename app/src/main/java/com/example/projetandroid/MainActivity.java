@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.projetandroid.home.AddPetFragment;
+import com.example.projetandroid.home.MyPetsFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import service.DatabaseHelper;
@@ -159,6 +160,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_mypet:
                 // Navigate to the MyPetFragment
+                replaceFragment(new MyPetsFragment());
+
                 break;
             case R.id.navaddpet:
                 // Navigate to the AddPetFragment

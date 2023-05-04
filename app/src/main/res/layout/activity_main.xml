@@ -28,6 +28,15 @@
             android:layout_height="match_parent"
             android:id="@+id/frameLayout"/>
 
+        <FrameLayout
+            android:id="@+id/nav_hos_fragment_from_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:name="android.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/navigations"
+            app:defaultNavHost="true"/>
+
 
     </LinearLayout>
 
