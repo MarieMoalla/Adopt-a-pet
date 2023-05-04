@@ -6,7 +6,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgPet"
+        android:background="@drawable/backgroundpet2"
         >
 
         <ImageView
@@ -20,12 +20,28 @@
             android:src="@drawable/image" />
 
         <EditText
-            android:id="@+id/pet_name"
+            android:id="@+id/pet_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/select_animal_img"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Gender"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black"
+            />
+
+        <EditText
+            android:id="@+id/pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pet_gender"
             android:layout_marginRight="50dp"
             android:background="@drawable/input_forme"
             android:fontFamily="@font/montserrat"
@@ -35,6 +51,7 @@
             android:padding="20dp"
             android:textColorHint="@android:color/black"
             />
+
 
         <EditText
             android:id="@+id/pet_breed"
@@ -62,8 +79,8 @@
             android:background="@drawable/input_forme"
             android:fontFamily="@font/montserrat"
             android:hint="Pet Weight"
-            android:inputType="textMultiLine"
             android:padding="20dp"
+            android:inputType="number"
             android:textColorHint="@android:color/black" />
 
         <EditText
@@ -77,8 +94,8 @@
             android:layout_below="@+id/pet_weight"
             android:background="@drawable/input_forme"
             android:fontFamily="@font/montserrat"
-            android:inputType="textMultiLine"
             android:padding="20dp"
+            android:inputType="number"
             android:textColorHint="@android:color/black" />
 
         <TextView
@@ -91,7 +108,6 @@
             android:layout_below="@+id/pet_age"
             android:background="@drawable/input_forme"
             android:fontFamily="@font/montserrat"
-            android:inputType="textMultiLine"
             android:padding="20dp"
             android:textColorHint="@android:color/black"
             android:text="Pet has report ?"
@@ -150,7 +166,6 @@
             android:layout_below="@+id/no_noforadaption"
             android:background="@drawable/button2"
             android:fontFamily="@font/montserrat"
-
             android:padding="17dp"
             android:text="Add Animal"
             android:textAllCaps="false"

@@ -7,7 +7,7 @@
     <!-- Bordure -->
     <stroke
         android:width="2dp"
-        android:color="@android:color/darker_black" />
+        android:color="@color/black" />
 
     <!-- Coins arrondis -->
     <corners android:radius="8dp" />

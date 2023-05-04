@@ -23,7 +23,7 @@
         android:layout_marginTop="300dp"
         android:fontFamily="@font/montserrat"
         android:text="About"
-        android:textColor="@android:color/Black"
+        android:textColor="@color/Black"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
         android:layout_marginTop="16dp"
 
         android:text="Gender"
-        android:textColor="@android:color/Black"
+        android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -44,7 +44,7 @@
         android:id="@+id/animal_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/Black"
+        android:textColor="@android:color/black"
         android:text="Adopt"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/animal_name"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat"
         android:text="About"
         android:textColor="@color/Black"
