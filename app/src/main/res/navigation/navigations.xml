@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/pet_list">
+
+    <fragment
+        android:id="@+id/pet_list"
+        android:name="com.example.projetandroid.AdoptionFragment"
+        android:label="Pet List">
+
+        <action
+            android:id="@+id/action_pet_list_to_pet_details"
+            app:destination="@id/pet_details" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/pet_details"
+        android:name="com.example.projetandroid.home.PetDetailFragment"
+        android:label="Pet Details"
+        />
+</navigation>

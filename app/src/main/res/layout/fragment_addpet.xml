@@ -1,89 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backgPet"
-    >
-
-
-    <ImageView
-        android:id="@+id/select_animal_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/circle_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/image" />
-
-    <EditText
-        android:id="@+id/animal_name"
+    android:layout_height="match_parent" >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/select_animal_img"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/input_forme"
-        android:fontFamily="@font/montserrat"
-        android:hint="Animal Name...."
+        android:layout_height="match_parent"
+        android:background="@drawable/backgPet"
+        >
 
-        android:inputType="textMultiLine"
-        android:padding="20dp"
-        android:textColorHint="@android:color/black"
+        <ImageView
+            android:id="@+id/select_animal_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/circle_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image" />
 
+        <EditText
+            android:id="@+id/pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/select_animal_img"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Name"
 
-        />
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black"
+            />
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/animal_name"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/input_forme"
-        android:fontFamily="@font/montserrat"
-        android:hint="Animal Age...."
+        <EditText
+            android:id="@+id/pet_breed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/pet_name"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Breed"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black" />
 
-        android:inputType="textMultiLine"
-        android:padding="20dp"
-        android:textColorHint="@android:color/black" />
+        <EditText
+            android:id="@+id/pet_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/pet_breed"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:hint="Pet Weight"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black" />
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/animal_name"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/input_forme"
-        android:fontFamily="@font/montserrat"
-        android:hint="Animal Description...."
+        <EditText
+            android:id="@+id/pet_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Age "
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/pet_weight"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black" />
 
-        android:inputType="textMultiLine"
-        android:padding="20dp"
-        android:textColorHint="@android:color/black" />
+        <TextView
+            android:id="@+id/question_has_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/pet_age"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black"
+            android:text="Pet has report ?"
 
-    <Button
-        android:id="@+id/add_new_animal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="71dp"
-        android:background="@drawable/button2"
-        android:fontFamily="@font/montserrat"
+            android:textStyle="bold"/>
+        <CheckBox
+            android:id="@+id/yes_hasreport"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/question_has_report"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="yes" />
+        <CheckBox
+            android:id="@+id/no_has_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yes_hasreport"
+            android:layout_marginLeft="50dp"
+            android:text="no" />
+        <TextView
+            android:id="@+id/q_for_adaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet has report ?"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:layout_below="@+id/no_has_report"
+            android:background="@drawable/input_forme"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textMultiLine"
+            android:padding="20dp"
+            android:textColorHint="@android:color/black" />
+        <CheckBox
+            android:id="@+id/yes_foradaption"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_below="@+id/q_for_adaption"
+            android:layout_height="wrap_content"
+            android:text="yes" />
+        <CheckBox
+            android:id="@+id/no_noforadaption"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_below="@+id/yes_foradaption"
+            android:layout_height="wrap_content"
+            android:text="no" />
 
-        android:padding="17dp"
-        android:text="Add Animal"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/add_pet_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="71dp"
+            android:layout_below="@+id/no_noforadaption"
+            android:background="@drawable/button2"
+            android:fontFamily="@font/montserrat"
 
-</RelativeLayout>
+            android:padding="17dp"
+            android:text="Add Animal"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</ScrollView>

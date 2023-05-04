@@ -16,6 +16,13 @@ public class Pet {
 
     //region constructor
     public Pet(){}
+    public Pet(String name, String breed, String gender, float weight, int age) {
+        this.name = name;
+        this.breed = breed;
+        this.gender = gender;
+        this.weight = weight;
+        this.age=age;
+    }
     public Pet(int id, String name, String breed, String gender, float weight, int age, int  hasReport, int forAdaption,int ownerId) {
         this.id = id;
         this.name = name;
