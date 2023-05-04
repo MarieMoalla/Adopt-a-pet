@@ -1,7 +1,5 @@
 package com.example.projetandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
@@ -93,23 +93,12 @@ public class LoginActivity extends AppCompatActivity{
         mResetPws.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, mLogin.getText().toString() , Toast.LENGTH_SHORT).show();
                 Boolean var = databasHelper.checkUserEmail(mLogin.getText().toString());
                 if(var != true){
                     Toast.makeText(LoginActivity.this, "Write email first" , Toast.LENGTH_SHORT).show();
                 } else {
-                        String subject="",content="",to_email="",token="";
-                        token = randomString();
-                        subject = "Reset Password";
-                        content ="Your Token is: "+token;
-                    Toast.makeText(LoginActivity.this, token , Toast.LENGTH_SHORT).show();
-
-                    to_email = mLogin.getText().toString();
-                        sendEmail(subject,content,to_email);
-
-
-                //Intent intent = new Intent(LoginActivity.this , ForgetPwd.class);
-                //startActivity(intent);
+                    String pwd = databasHelper.getUserPassword(mLogin.getText().toString());
+                    Toast.makeText(LoginActivity.this, "Your password is: "+pwd , Toast.LENGTH_SHORT).show();
             }
         }});
 

@@ -1,5 +1,6 @@
 package com.example.projetandroid;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public int id;
 
+    SharedPreferences sp1;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         //get current user id
-        SharedPreferences sp1=this.getSharedPreferences("Login", MODE_PRIVATE);
+        sp1 =this.getSharedPreferences("Login", MODE_PRIVATE);
         id = sp1.getInt("Id", 0);
 
         //instanciate pet service
@@ -178,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_logout:
                 // Handle logout
+                logout();
                 break;
 
         }
@@ -189,6 +192,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    //logout
+    public void logout ()
+    {
+        SharedPreferences.Editor editor = this.sp1.edit();
+        editor.remove("Id");
+        editor.apply();
+        Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+        startActivity(intent);
+    }
     //replace cutrrent fragment with next one
     private void replaceFragment(Fragment f)
     {

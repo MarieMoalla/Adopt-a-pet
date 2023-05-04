@@ -166,7 +166,6 @@
             android:layout_below="@+id/no_noforadaption"
             android:background="@drawable/button2"
             android:fontFamily="@font/montserrat"
-
             android:padding="17dp"
             android:text="Add Animal"
             android:textAllCaps="false"

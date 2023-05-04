@@ -183,6 +183,24 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
     //endregion
 
+    //#region retrive user password
+    public String getUserPassword(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_USER, new String[] {USER_PASSWORD}, USER_EMAIL + "=?",
+                new String[] { String.valueOf(email) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String pwd ="";
+
+        if(cursor.moveToFirst()){
+            pwd = cursor.getString(cursor.getColumnIndexOrThrow(USER_PASSWORD));
+        }
+        return pwd;
+    }
+    //#endregion
+
     //endregion
 
     //region PET
