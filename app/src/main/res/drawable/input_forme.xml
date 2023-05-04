@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+
+
+    <!-- Bordure -->
+    <stroke
+        android:width="2dp"
+        android:color="@android:color/darker_black" />
+
+    <!-- Coins arrondis -->
+    <corners android:radius="8dp" />
+
+    <!-- Ajout d'un peu de marge interne pour que le texte ne soit pas collé au bord -->
+    <padding
+        android:bottom="8dp"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="8dp" />
+
+</shape>
