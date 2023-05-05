@@ -224,6 +224,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
     //#endregion
 
+    //#region delete user
+    public long deleteUserById(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long deletedId = db.delete(TABLE_USER, USER_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+        return deletedId;
+    }
+
+    //#endregion
     //endregion
 
     //region PET
