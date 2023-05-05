@@ -15,43 +15,50 @@
         android:src="@drawable/dog1" />
 
 
-    <TextView
-        android:id="@+id/animal_age"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="300dp"
-        android:fontFamily="@font/montserrat"
-        android:text="About"
-        android:textColor="@color/Black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/animal_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/animal_age"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        <TextView
+            android:id="@+id/animal_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="About"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="50dp"
 
-        android:text="Gender"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/animal_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="Adopt"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/animal_gender"
+        <TextView
+            android:id="@+id/animal_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Gender"
+            android:layout_marginRight="35dp"
 
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/animal_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Adopt"
+            android:fontFamily="@font/montserrat"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 
     <TextView
