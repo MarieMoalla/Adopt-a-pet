@@ -19,8 +19,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.projetandroid.home.AddPetFragment;
+import com.example.projetandroid.home.AddRequestFragment;
 import com.example.projetandroid.home.MyPetsFragment;
+import com.example.projetandroid.home.MyRequestFragment;
 import com.example.projetandroid.home.ProfileFragment;
+import com.example.projetandroid.home.RequestFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import service.DatabaseHelper;
@@ -169,9 +172,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // Navigate to the AddPetFragment
                 replaceFragment(new AddPetFragment());
                 break;
-            case R.id.navrequests:
-                // Navigate to the RequestsFragment
-                break;
             case R.id.nav_profile:
                 // Navigate to the ProfileFragment
                 replaceFragment(new ProfileFragment());
@@ -184,7 +184,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // Handle logout
                 logout();
                 break;
-
+            case R.id.recieved_request:
+                replaceFragment(new RequestFragment());
+                break;
+            case R.id.add_request:
+                replaceFragment(new AddRequestFragment());
+                break;
+            case R.id.my_requests:
+                replaceFragment(new MyRequestFragment());
+                break;
         }
 
         // Close the navigation drawer

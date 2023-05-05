@@ -3,7 +3,7 @@ package model;
 public class AdoptionRequest {
     //region attributes
     private int id;
-    private boolean accepted = false;
+    private int accepted = 0;
     private int ownerId;
     private int adapterId;
     //foreign key
@@ -12,7 +12,7 @@ public class AdoptionRequest {
 
     //region constructor
     public AdoptionRequest(){}
-    public AdoptionRequest(int id, boolean accepted, int ownerId, int adapterId, int petId) {
+    public AdoptionRequest(int id, int accepted, int ownerId, int adapterId, int petId) {
         this.id = id;
         this.accepted = accepted;
         this.ownerId = ownerId;
@@ -29,10 +29,10 @@ public class AdoptionRequest {
         this.id = id;
     }
 
-    public boolean getAccepted() {
+    public int getAccepted() {
         return accepted;
     }
-    public void setAccepted(boolean accepted) {
+    public void setAccepted(int accepted) {
         this.accepted = accepted;
     }
 

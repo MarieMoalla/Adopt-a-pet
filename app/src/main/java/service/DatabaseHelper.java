@@ -10,6 +10,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import model.AdoptionRequest;
 import model.Pet;
 import model.User;
 
@@ -21,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     //region datbase config
 
     // Database Version
-    private static final int DATABASE_VERSION = 16;
+    private static final int DATABASE_VERSION = 19;
     // Database Name
     private static final String DATABASE_NAME = "miniprojet.db";
 
@@ -305,7 +306,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         if (cursor.moveToFirst()) {
             do {
-                if(Integer.parseInt(cursor.getString(7)) == ownerId)
+                Log.i("currentused petownerid",String.valueOf(ownerId) +" "+ (cursor.getString(8)));
+
+                if(Integer.parseInt(cursor.getString(8)) == ownerId)
                 {
                     Pet pet = new Pet();
                     pet.setId(Integer.parseInt(cursor.getString(0)));
@@ -313,9 +316,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     pet.setBreed(cursor.getString(2));
                     pet.setGender(cursor.getString(3));
                     pet.setWeight(cursor.getFloat(4));
-                    pet.setHasReport(Integer.parseInt(cursor.getString(5)));
-                    pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
-                    pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
+                    pet.setAge(cursor.getInt(5));
+                    pet.setHasReport(Integer.parseInt(cursor.getString(6)));
+                    pet.setForAdaption(Integer.parseInt(cursor.getString(7)));
+                    pet.setOwnerId(Integer.parseInt(cursor.getString(8)));
                     petsList.add(pet);
                 }
             } while (cursor.moveToNext());
@@ -371,9 +375,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     pet.setBreed(cursor.getString(2));
                     pet.setGender(cursor.getString(3));
                     pet.setWeight(cursor.getFloat(4));
-                    pet.setHasReport(Integer.parseInt(cursor.getString(5)));
-                    pet.setForAdaption(Integer.parseInt(cursor.getString(6)));
-                    pet.setOwnerId(Integer.parseInt(cursor.getString(7)));
+                    pet.setAge(cursor.getInt(5));
+                    pet.setHasReport(Integer.parseInt(cursor.getString(6)));
+                    pet.setForAdaption(Integer.parseInt(cursor.getString(7)));
+                    pet.setOwnerId(Integer.parseInt(cursor.getString(8)));
                     petsList.add(pet);
                 }
 
@@ -444,5 +449,145 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //endregion
 
+    //region Create requests
+    public void addRequest(AdoptionRequest req) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(REQUEST_OWNERID, req.getOwnerId());
+        values.put(REQUEST_ADAPTERID, req.getAdapterId());
+        values.put(REQUEST_ACCEPTED, 0);
+        values.put(REQUEST_PETID, req.getPetId());
+        // Inserting Row
+        try{
+            Log.i("req values",String.valueOf(req.getId()));
+            db.insert(TABLE_REQUEST, null, values);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        db.close();
+    }
+    //endregion
+
+
+    //#region delete user
+    public void deleteRequById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long deletedId = db.delete(TABLE_REQUEST, REQUEST_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+    //#endregion
+
+    //#region accept resques
+    public void acceptRequest(AdoptionRequest req, int newownerId)
+    {
+        try
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(PETOWNERID, newownerId);
+            int result = db.update(TABLE_PET, values, PET_ID + " = ?",
+                    new String[]{String.valueOf(req.getPetId())});
+            db.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //#endregion
+
+    //region get res detail
+    public AdoptionRequest getRequestDetail(int reqId) {
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_REQUEST + " WHERE  = "+ reqId;
+
+
+        try
+        {
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            if (cursor != null ) cursor.moveToFirst();
+            AdoptionRequest p = new AdoptionRequest(
+                    reqId,
+                    Integer.parseInt(cursor.getString(1)),
+                    Integer.parseInt(cursor.getString(2)),
+                    Integer.parseInt(cursor.getString(3)),
+                    Integer.parseInt(cursor.getString(4))
+            );
+            db.close();
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //endregion
+
+    //region get recieved requests
+
+    public ArrayList<AdoptionRequest> getRecievedRequests(int myId) {
+        ArrayList<AdoptionRequest> reqList = new ArrayList<AdoptionRequest>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_REQUEST;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                if(Integer.parseInt(cursor.getString(2)) == myId )
+                {
+                    AdoptionRequest req = new AdoptionRequest();
+                    req.setId(Integer.parseInt(cursor.getString(0)));
+                    req.setAccepted(Integer.parseInt(cursor.getString(1)));
+                    req.setOwnerId(Integer.parseInt(cursor.getString(2)));
+                    req.setAdapterId(Integer.parseInt(cursor.getString(3)));
+                    req.setPetId(Integer.parseInt(cursor.getString(4)));
+
+                    reqList.add(req);
+                }
+
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return reqList;
+    }
+
+    //endregion
+
+    //region get my requests (request sent to me)
+
+    public ArrayList<AdoptionRequest> getMyRequests(int myId) {
+        ArrayList<AdoptionRequest> reqList = new ArrayList<AdoptionRequest>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_REQUEST;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                if(Integer.parseInt(cursor.getString(3)) == myId )
+                {
+                    AdoptionRequest req = new AdoptionRequest();
+                    req.setId(Integer.parseInt(cursor.getString(0)));
+                    req.setAccepted(Integer.parseInt(cursor.getString(1)));
+                    req.setOwnerId(Integer.parseInt(cursor.getString(2)));
+                    req.setAdapterId(Integer.parseInt(cursor.getString(3)));
+                    req.setPetId(Integer.parseInt(cursor.getString(4)));
+
+                    reqList.add(req);
+                }
+
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return reqList;
+    }
+
+    //endregion
 
 }

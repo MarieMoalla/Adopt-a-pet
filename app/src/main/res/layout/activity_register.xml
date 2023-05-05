@@ -27,7 +27,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat"
             android:text="Create NEW Account"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
         <EditText
@@ -39,9 +39,9 @@
             android:fontFamily="@font/montserrat"
             android:hint="First Name"
             android:inputType="textPersonName"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/white"
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/black"
             />
         <EditText
             android:id="@+id/sign_et_lastname"
@@ -52,9 +52,9 @@
             android:fontFamily="@font/montserrat"
             android:hint="Last Name"
             android:inputType="textPersonName"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/white" />
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/black" />
         <EditText
             android:id="@+id/sign_et_username"
             android:layout_width="320dp"
@@ -64,9 +64,9 @@
             android:fontFamily="@font/montserrat"
             android:hint="E-mail"
             android:inputType="textPersonName"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/white"/>
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/black"/>
         <EditText
             android:id="@+id/sign_et_password"
             android:layout_width="320dp"
@@ -76,9 +76,9 @@
             android:fontFamily="@font/montserrat"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/white" />
+            android:textColorHint="@color/black"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/black" />
         <Button
             android:id="@+id/sing_et_btn"
             android:layout_width="320dp"
@@ -89,7 +89,7 @@
             android:fontFamily="@font/montserrat"
             android:text="Create account"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="18dp" />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 android:text="You already have an account ?"
-                android:textColor="@color/white"
+                android:textColor="@color/Black"
                 android:textSize="14sp" />
 
             <TextView

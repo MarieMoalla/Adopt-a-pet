@@ -5,13 +5,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp"
-
+        android:paddingLeft="20dp"
         android:paddingBottom="40dp">
 
 
         <ListView
             android:id="@+id/list"
+            android:layout_below="@id/settings_profile_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
