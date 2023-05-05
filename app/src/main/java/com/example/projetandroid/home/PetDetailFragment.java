@@ -32,7 +32,7 @@ public class PetDetailFragment extends Fragment {
         //get  used service
         PetsServices petsServices = new PetsServices(this.getContext());
 
-        //db$
+        //db
         databaseHelper = new DatabaseHelper(this.getContext());
 
 
@@ -41,7 +41,7 @@ public class PetDetailFragment extends Fragment {
         int id = sp1.getInt("Id", 0);
 
         //allow fragment to extract view components
-        View view = inflater.inflate(R.layout.fragment_pet_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_pet_details, container, false);
 
         // Retrieve the data from the arguments bundle
         Bundle bundle = getArguments();

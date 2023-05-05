@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -35,7 +39,7 @@
                     android:textSize="17sp"
 
                     android:textStyle="bold" />
-
+<!--
                 <TextView
                     android:id="@+id/update_settings_btn"
                     android:layout_width="wrap_content"
@@ -49,7 +53,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="17sp"
                     android:textStyle="bold" />
-
+-->
 
             </RelativeLayout>
 
@@ -86,7 +90,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/user_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_img_change_btn"
@@ -100,50 +104,61 @@
         android:textColorHint="@android:color/black" />
 
     <EditText
-        android:id="@+id/user_name"
+        android:id="@+id/user_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profile_img_change_btn"
+        android:layout_below="@id/user_first_name"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/input_forme"
-        android:hint="First Name"
+        android:hint="Last Name"
         android:padding="10dp"
         android:textColorHint="@android:color/black" />
+
     <EditText
-        android:id="@+id/settings_phone_number"
+        android:id="@+id/user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_name"
+        android:layout_below="@id/user_last_name"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/input_forme"
-        android:hint="Phone Number"
+        android:hint="Email"
         android:padding="10dp"
-        android:inputType="number"
         android:textColorHint="@android:color/black" />
 
-
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_email"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/input_forme"
+        android:hint=" Password"
+        android:padding="10dp"
+        android:textColorHint="@android:color/black" />
     />
 
-
-    <EditText
-        android:id="@+id/settings_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/settings_full_name"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/input_forme"
-
-        android:hint="Address..."
-        android:padding="10dp"
-        android:textColorHint="@android:color/black" />
-
+    <Button
+        android:id="@+id/edit_user_btn"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_margin="50dp"
+        android:layout_below="@id/user_password"
+        android:background="@drawable/button2"
+        android:fontFamily="@font/montserrat"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="18dp" />
 </RelativeLayout>
+</ScrollView>
