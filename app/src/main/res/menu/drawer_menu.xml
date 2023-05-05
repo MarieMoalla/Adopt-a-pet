@@ -21,11 +21,25 @@ tools:showIn="navigation_view"
         android:id="@+id/navaddpet"
         android:icon="@drawable/ic_addpet"
         android:title="Add pet" />
-    <item
-        android:id="@+id/navrequests"
-        android:icon="@drawable/request"
-        android:title="Requests" />
 </group>
+
+    <group android:checkableBehavior="single"
+
+        >
+        <item
+            android:id="@+id/my_requests"
+            android:icon="@drawable/ic_pet"
+            android:title="My Requests" />
+        <item
+            android:id="@+id/add_request"
+            android:icon="@drawable/ic_mypets"
+            android:title="Add adoption request"
+            />
+        <item
+            android:id="@+id/recieved_request"
+            android:icon="@drawable/ic_addpet"
+            android:title="Recieved requests" />
+    </group>
 
 <item android:title="Others"   >
     <menu>

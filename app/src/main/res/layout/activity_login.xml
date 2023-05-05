@@ -26,7 +26,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="Make a New Friend  ! "
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
     <TextView
@@ -36,7 +36,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/montserrat"
         android:text="Adopt a Pet today "
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:hint="E-mail"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:backgroundTint="@color/black"
         />
@@ -61,8 +61,8 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat"
         android:hint="Password"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:backgroundTint="@color/black"
         android:inputType="textPassword"
         />
@@ -77,7 +77,7 @@
         android:fontFamily="@font/montserrat"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18dp" />
 
     <LinearLayout
@@ -93,7 +93,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="Don't have an account yet ?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
 
@@ -122,7 +122,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="Did you forget your password ?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
         <TextView

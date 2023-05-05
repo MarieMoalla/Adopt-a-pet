@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@drawable/background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/background"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:paddingBottom="40dp"
-    android:id="@+id/fragment_adoption">
+        android:id="@+id/fragment_adoption">
+
 
         <ListView
             android:id="@+id/list"
@@ -17,6 +19,7 @@
 
         <TextView
             android:id="@+id/pet_id_textview"
+            android:layout_below="@id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8sp" />
