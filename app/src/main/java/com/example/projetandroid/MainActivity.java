@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_settings:
                 // Navigate to the SettingsFragment
+                replaceFragment(new SettingsFragment());
                 break;
             case R.id.nav_logout:
                 // Handle logout
