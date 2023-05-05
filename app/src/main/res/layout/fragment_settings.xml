@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    android:background="@drawable/background"
+    tools:context=".SettingsFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="settings Fragment"
-        android:textSize="30sp" />
+        android:orientation="vertical"
+        android:layout_gravity="start|top"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/batteryLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat"
+            android:drawableStart="@drawable/ic_battery"
+            android:drawablePadding="20dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/internetconnection"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:drawableStart="@drawable/ic_wifi"
+            android:drawablePadding="20dp"
+            />
+
+    </LinearLayout>
+
+
+
 
 </RelativeLayout>

@@ -1,12 +1,10 @@
-<resources>
-    <string name="app_name">ProjetAndroid</string>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="app_name" android:fontFamily="@font/montserrat">Adopt a pet today</string>
     <string name="empty_view_title_text">empty_view_title_text</string>
     <string name="empty_view_subtitle_text">empty_view_subtitle_text</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
 </resources>
