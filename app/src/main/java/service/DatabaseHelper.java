@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
     //endregion
 
-    // region Void to check user exist in database
+    // region  to check user exist in database
     public boolean checkUser(String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] columns = {USER_ID};
@@ -159,6 +159,29 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return user;
     }
     //endregion
+
+    //#region update user
+    public boolean updateUser(int userId,User user )
+    {
+        try
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            if(user.getmName() != "" && user.getmName() != null)  values.put(USER_NAME, user.getmName());
+            if(user.getmLastname() != "" && user.getmLastname() != null) values.put(USER_LAST_NAME, user.getmLastname());
+            if(user.getmEmail() != "" && user.getmEmail() != null) values.put(USER_EMAIL, user.getmEmail());
+            if(user.getmPassword() != "" && user.getmPassword() != null) values.put(USER_PASSWORD, user.getmPassword());
+
+            int result = db.update(TABLE_USER, values, USER_ID + " = ?",
+                    new String[]{String.valueOf(userId)});
+            db.close();
+            return result != 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    //#endregion
 
     //region get user id
     public int getUserId(String email) {
