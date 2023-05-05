@@ -114,6 +114,7 @@
                 android:fontFamily="@font/montserrat"
                 android:text="SignIn"
                 android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
                 android:textStyle="bold"
                 android:textSize="14sp"/>
 

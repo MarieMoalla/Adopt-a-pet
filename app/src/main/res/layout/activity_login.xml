@@ -102,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
+            android:layout_marginLeft="20dp"
             android:text="Register"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -131,6 +132,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="Reset Password"
+            android:layout_marginLeft="20dp"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />

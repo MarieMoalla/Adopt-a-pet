@@ -20,7 +20,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.projetandroid.home.AddPetFragment;
 import com.example.projetandroid.home.AddRequestFragment;
-import com.example.projetandroid.home.MyPetsFragment;
+//import com.example.projetandroid.home.MyPetsFragment;
 import com.example.projetandroid.home.MyRequestFragment;
 import com.example.projetandroid.home.ProfileFragment;
 import com.example.projetandroid.home.RequestFragment;
@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
 
 
         //Toolebar
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_mypet:
                 // Navigate to the MyPetFragment
-                replaceFragment(new MyPetsFragment());
+               // replaceFragment(new MyPetsFragment());
                 break;
             case R.id.navaddpet:
                 // Navigate to the AddPetFragment
@@ -192,6 +196,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.my_requests:
                 replaceFragment(new MyRequestFragment());
+                break;
+            case R.id.nav_position:
+                replaceFragment(new MapsFragment());
                 break;
         }
 

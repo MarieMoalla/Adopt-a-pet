@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
    >
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -25,9 +32,7 @@
         <activity
             android:name=".StartActivity"
             android:exported="false"/>
-        <activity
-            android:name=".ForgetPwd"
-            android:exported="false"/>
+
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
@@ -36,11 +41,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="false"/>
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCee53mPoQftyFiPs7hPGUJmYBXvEyPtrk"/>
         
     </application>
 
