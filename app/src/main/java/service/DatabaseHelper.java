@@ -398,7 +398,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         String selectQuery = "SELECT * FROM " + TABLE_PET + " WHERE pet_id = "+ petid;
 
-
         try
         {
             Cursor cursor = db.rawQuery(selectQuery, null);
