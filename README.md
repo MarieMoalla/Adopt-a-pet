@@ -37,7 +37,8 @@ You can make a request to adapt a pet, once approved the pet's informations will
 
 ## Screenshots
 
-![App Screenshot](https://github.com/MarieMoalla/Adopt-a-pet/blob/main/app/src/main/res/drawable/s1.jpg?raw=true)
+<img src="https://github.com/MarieMoalla/Adopt-a-pet/blob/main/app/src/main/res/drawable/s1.jpg?raw=true" width="300" height="200">
+
 ![App Screenshot](https://github.com/MarieMoalla/Adopt-a-pet/blob/main/app/src/main/res/drawable/s2.jpg?raw=true)
 ![App Screenshot](https://github.com/MarieMoalla/Android-project/blob/main/app/src/main/res/drawable/s3.jpg?raw=true)
 ![App Screenshot](https://github.com/MarieMoalla/Android-project/blob/main/app/src/main/res/drawable/s4.jpg?raw=true)
