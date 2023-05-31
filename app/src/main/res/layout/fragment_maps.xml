@@ -6,7 +6,6 @@
     tools:context=".MapsFragment"
     android:id="@+id/frameLayout1"
    >
-
     <fragment
         android:id="@+id/post_map"
         android:layout_width="match_parent"
